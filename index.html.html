@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Meu Amor ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7e2 100%);
+            font-family: 'Montserrat', sans-serif;
+            color: #4a4a4a;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Canvas para as partículas flutuantes */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Tela de Entrada (Overlay) */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff5f5;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease;
+        }
+
+        #overlay h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #d63384;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-comecar {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: #d63384;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(214, 51, 132, 0.4);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            transition: transform 0.2s;
+            z-index: 1001;
+        }
+
+        .btn-comecar:hover {
+            transform: scale(1.1);
+            background: #c22d76;
+        }
+
+        header, .gallery, .message, footer {
+            position: relative;
+            z-index: 2;
+        }
+
+        header { padding: 60px 20px 20px; }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #d63384;
+            margin-bottom: 10px;
+        }
+
+        .heart {
+            color: #ff4d4d;
+            font-size: 2.5rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px 0;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover { transform: scale(1.03); }
+
+        .message {
+            max-width: 600px;
+            padding: 40px;
+            font-style: italic;
+            line-height: 1.8;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin: 20px;
+            border-left: 5px solid #d63384;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 30px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .music-player { display: none; }
+
+        /* Estilo das partículas */
+        .particle {
+            position: absolute;
+            background: rgba(214, 51, 132, 0.2);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: move linear infinite;
+        }
+
+        @keyframes move {
+            from { transform: translateY(100vh) scale(0); opacity: 1; }
+            to { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <div id="overlay">
+        <div class="heart">❤️</div>
+        <h2>Para o meu calango do deserto...</h2>
+        <button class="btn-comecar" onclick="comecar()">Clique aqui, meu amor</button>
+    </div>
+
+    <header>
+        <h1>Eu Te Amo Muito!</h1>
+        <p>Para a pessoa especial que chegou em minha vida e já transformou tudo.</p>
+    </header>
+
+    <div class="gallery">
+        <img src="FOTO1.jpeg" alt="Momento especial">
+        <img src="foto2.jpg" alt="Momento especial">
+        <img src="foto3.jpg" alt="Momento especial">
+    </div>
+
+    <div class="message">
+        <p>"O meu coração é o seu lugar..."</p>
+        <p>Pensei em mil formas de dizer o quanto você é importante para mim, mas decidi apenas mostrar. Obrigado por ser minha parceria, minha força e por tornar cada momento da nossa história tão especial. Que a nossa aliança se fortaleça a cada dia. Te amo! E, claro, eu adoraria que você amasse tomar banho também... mas como ninguém é perfeito, eu aceito você assim mesmo! ❤️</p>
+    </div>
+
+    <audio id="player" loop>
+        <source src="Aliança.mp3" type="audio/mpeg">
+    </audio>
+
+    <footer>
+        Feito com ❤️ pelo seu menino favorito
+    </footer>
+
+    <script>
+        // Lógica para criar as partículas de fundo
+        function createParticles() {
+            const container = document.getElementById('particles-js');
+            const particleCount = 40;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 12 + 4 + 'px';
+                particle.style.width = size;
+                particle.style.height = size;
+                
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = Math.random() * 8 + 4 + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.opacity = Math.random();
+                
+                container.appendChild(particle);
+            }
+        }
+
+        function comecar() {
+            var audio = document.getElementById('player');
+            audio.play().catch(function(error) {
+                console.log("Erro ao tocar áudio: ", error);
+            });
+            
+            var overlay = document.getElementById('overlay');
+            overlay.style.opacity = '0';
+            setTimeout(function() {
+                overlay.style.display = 'none';
+                createParticles(); // Inicia o efeito após o clique
+            }, 800);
+        }
+    </script>
+
+</body>
+</html>
