@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Meu Amor ❤️</title>
+    <title>Feliz Dia da Mulher, Meu Amor ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
         body {
@@ -112,12 +112,12 @@
         .gallery img {
             width: 100%;
             height: 300px;
-            /* Alterado de cover para contain para evitar cortes nas fotos */
+            /* Mantido 'contain' para não cortar os rostos nas fotos 2 e 3 */
             object-fit: contain; 
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s;
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.3); /* Fundo suave para fotos que não preenchem */
         }
 
         .gallery img:hover { transform: scale(1.03); }
@@ -164,13 +164,13 @@
 
     <div id="overlay">
         <div class="heart">❤️</div>
-        <h2>Para o meu calango do deserto...</h2>
+        <h2>Para o meu calango do deserto... uma homenagem especial.</h2>
         <button class="btn-comecar" onclick="comecar()">Clique aqui, meu amor</button>
     </div>
 
     <header>
-        <h1>Eu Te Amo Muito!</h1>
-        <p>Para a pessoa especial que chegou em minha vida e já transformou tudo.</p>
+        <h1>Feliz Dia da Mulher!</h1>
+        <p>Celebrando a mulher incrível que você é, hoje e todos os dias.</p>
     </header>
 
     <div class="gallery">
@@ -181,7 +181,7 @@
 
     <div class="message">
         <p>"O meu coração é o seu lugar..."</p>
-        <p>Pensei em mil formas de dizer o quanto você é importante para mim, mas decidi apenas mostrar. Obrigado por ser minha parceria, minha força e por tornar cada momento da nossa história tão especial. Que a nossa aliança se fortaleça a cada dia. Te amo! E, claro, eu adoraria que você amasse tomar banho também... mas como ninguém é perfeito, eu aceito você assim mesmo! ❤️</p>
+        <p>Neste Dia da Mulher, quero celebrar a pessoa maravilhosa que você é. Obrigado por ser minha parceria, minha força e por tornar cada momento da nossa história tão especial. Que a nossa aliança se fortaleça a cada dia. Te amo! E, claro, eu adoraria que você amasse tomar banho também... mas como ninguém é perfeito, eu aceito você assim mesmo! ❤️</p>
     </div>
 
     <audio id="player" loop>
@@ -193,6 +193,7 @@
     </footer>
 
     <script>
+        // Lógica para criar as partículas de fundo
         function createParticles() {
             const container = document.getElementById('particles-js');
             const particleCount = 40;
@@ -216,6 +217,7 @@
 
         function comecar() {
             var audio = document.getElementById('player');
+            // Tenta tocar a música, tratando possíveis bloqueios do navegador
             audio.play().catch(function(error) {
                 console.log("Erro ao tocar áudio: ", error);
             });
@@ -224,7 +226,7 @@
             overlay.style.opacity = '0';
             setTimeout(function() {
                 overlay.style.display = 'none';
-                createParticles();
+                createParticles(); // Inicia o efeito após o clique
             }, 800);
         }
     </script>
