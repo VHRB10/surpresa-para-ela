@@ -20,7 +20,6 @@
             position: relative;
         }
 
-        /* Canvas para as partículas flutuantes */
         #particles-js {
             position: fixed;
             top: 0;
@@ -31,7 +30,6 @@
             pointer-events: none;
         }
 
-        /* Tela de Entrada (Overlay) */
         #overlay {
             position: fixed;
             top: 0;
@@ -112,12 +110,11 @@
         .gallery img {
             width: 100%;
             height: 300px;
-            /* Mantido 'contain' para não cortar os rostos nas fotos 2 e 3 */
             object-fit: contain; 
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s;
-            background-color: rgba(255, 255, 255, 0.3); /* Fundo suave para fotos que não preenchem */
+            background-color: rgba(255, 255, 255, 0.3);
         }
 
         .gallery img:hover { transform: scale(1.03); }
@@ -143,7 +140,6 @@
 
         .music-player { display: none; }
 
-        /* Estilo das partículas */
         .particle {
             position: absolute;
             background: rgba(214, 51, 132, 0.2);
@@ -175,13 +171,16 @@
 
     <div class="gallery">
         <img src="FOTO1.jpeg" alt="Momento especial">
-        <img src="FOTO2.jpeg" alt="Momento especial">
+        <img src="FOTO2.jpg" alt="Momento especial">
         <img src="FOTO3.jpeg" alt="Momento especial">
     </div>
 
     <div class="message">
         <p>"O meu coração é o seu lugar..."</p>
-        <p>Neste Dia da Mulher, quero celebrar a pessoa maravilhosa que você é. Obrigado por ser minha parceria, minha força e por tornar cada momento da nossa história tão especial. Que a nossa aliança se fortaleça a cada dia. Te amo! E, claro, eu adoraria que você amasse tomar banho também... mas como ninguém é perfeito, eu aceito você assim mesmo! ❤️ OBS: Queria mais fotos mas não temos e eu não consegui esperar até termos mais fotos kkk</p>
+        <p>
+            Neste Dia da Mulher, quero celebrar a pessoa maravilhosa que você é. Hoje é o dia da mulher, mas quem está ganhando sou eu por ter você em minha vida. Graças a você, hoje eu sou muito feliz. 
+            Que a nossa aliança se fortaleça a cada dia. Te amo! E, claro, eu adoraria que você amasse tomar banho também... mas como ninguém é perfeito, eu aceito você assim mesmo! ❤️
+        </p>
     </div>
 
     <audio id="player" loop>
@@ -193,7 +192,6 @@
     </footer>
 
     <script>
-        // Lógica para criar as partículas de fundo
         function createParticles() {
             const container = document.getElementById('particles-js');
             const particleCount = 40;
@@ -217,7 +215,6 @@
 
         function comecar() {
             var audio = document.getElementById('player');
-            // Tenta tocar a música, tratando possíveis bloqueios do navegador
             audio.play().catch(function(error) {
                 console.log("Erro ao tocar áudio: ", error);
             });
@@ -226,11 +223,10 @@
             overlay.style.opacity = '0';
             setTimeout(function() {
                 overlay.style.display = 'none';
-                createParticles(); // Inicia o efeito após o clique
+                createParticles();
             }, 800);
         }
     </script>
 
 </body>
 </html>
-
